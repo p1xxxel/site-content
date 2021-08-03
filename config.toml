@@ -1,0 +1,9 @@
+baseURL = "https://p1xxxel.github.io"
+languageCode = "en-us"
+title = "Just another writeup site"
+theme = "hugo-theme-shell"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
