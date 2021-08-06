@@ -56,6 +56,7 @@ ignoreErrors = ["error-remote-getjson"]
     ["Hackthebox Pit Writeup", "/posts/pit-writeup.md"],
     ["Hackthebox Explore Writeup", "/posts/explore-writeup.md"],
     ["Hackthebox Cap Writeup", "/posts/cap-writeup.md"],
+    ["Tryhackme CMSpit Writeup - NoSQL to RCE in cockpit", "/posts/CMSpit-writeup.md"],
   ]
 
 [module]
