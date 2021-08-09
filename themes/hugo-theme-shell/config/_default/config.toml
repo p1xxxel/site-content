@@ -53,6 +53,7 @@ ignoreErrors = ["error-remote-getjson"]
   folderName = "my_activity"
   # Note: ["ACTIVITY", "URL or PATH TO YOUR MARKDOWN FILE"]
   files = [ 
+    ["BSides Noida CTF 2021 Writeups", "/posts/BSides_Noida-writeup.md"],
     ["Hackthebox Pit Writeup", "/posts/pit-writeup.md"],
     ["Hackthebox Explore Writeup", "/posts/explore-writeup.md"],
     ["Hackthebox Cap Writeup", "/posts/cap-writeup.md"],
