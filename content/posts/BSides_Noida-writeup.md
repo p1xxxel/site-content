@@ -20,19 +20,19 @@ Note : Bruteforce is not required.
 
 Downloading the source and hosting it in a docker locally, we see that this website takes a parameter `chall_id`
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Baby%20Web/baby_web_site.png">
+![baby web site](/BSNoida_baby_web_site.png)
 
 Looking at the `index.php` file, we see that the following sql query is being executed.
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Baby%20Web/sql_query.png">
+![](/BSNoida_sql_query.png)
 
 But if we try to put an alphabet in the parameter `chall_id`, we get an error.
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Baby%20Web/baby_web_error.png" height="50%" width="50%">
+![](/BSNoida_baby_web_error.png" height="50%" width="50%)
 
 Looking at `config/ctf.conf` in the source code, there is some regex that is used to prevent alphabets and white spaces.
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Baby%20Web/baby_web_regex.png">
+![](/BSNoida_baby_web_regex.png)
 
 To bypass this we can use two parameters so that first one is processed by nginx and second one bypasses it.
 
@@ -40,7 +40,7 @@ To bypass this we can use two parameters so that first one is processed by nginx
 GET /?chall_id=1&chall_id=a
 ```
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Baby%20Web/nginx_bypass.png">
+![](/BSNoida_nginx_bypass.png)
 
 And to bypass the white space restriction we can use comments.
 
@@ -57,7 +57,7 @@ GET /?chall_id=1&chall_id=1/**/UNION/**/SELECT/**/NULL,NULL,NULL,NULL,NULL,sql/*
 
 Using this payload we get a table named `flagsss` and column named `flag`
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Baby%20Web/getting_tables_columns.png">
+![](/BSNoida_getting_tables_columns.png)
 
 Now, we can use the following query to retrieve the flag.
 
@@ -65,7 +65,7 @@ Now, we can use the following query to retrieve the flag.
 GET /?chall_id=1&chall_id=1/**/UNION/**/SELECT/**/NULL,NULL,NULL,NULL,NULL,flag/**/FROM/**/flagsss
 ```
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Baby%20Web/flag_query.png">
+![](/BSNoida_flag_query.png)
 
 So the flag is `BSNoida{4_v3ry_w4rm_w31c0m3_2_bs1d35_n01d4}`
 
@@ -100,25 +100,25 @@ server-status           [Status: 403, Size: 277, Words: 20, Lines: 10]
 
 At `ryuk.apples`, there is a ssh private key but it has a passphrase.
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Death%20Note/ryuk_ssh_passphrase.png">
+![](/BSNoida_ryuk_ssh_passphrase.png)
 
 #### Cracking ssh key
 We can use `ssh2john` and then crack it with john using the given wordlist.
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Death%20Note/cracking_ssh_key.png">
+![](/BSNoida_cracking_ssh_key.png)
 
 Now we can use this to login as `ryuk`
 
 #### Cracking shadow
 We see in ryuk's home directory there is shadow and passwd. 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Death%20Note/ryuk_shadow.png">
+![](/BSNoida_ryuk_shadow.png)
 
 Using them, we get the password of `light`
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Death%20Note/cracking_shadow.png">
+![](/BSNoida_cracking_shadow.png)
 
 #### Getting flag
 Doing a `sudo -l`, we can run `cat` as root so we can just cat the flag at `/root/root.txt`
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Death%20Note/getting_flag.png">
+![](/BSNoida_getting_flag.png)
 
 So the flag is `BSNoida{Pr1vEsc_w4a_E4sy_P3a5y}`
 
@@ -138,11 +138,11 @@ PS: Put the flag in BSNoida{} wrapper.
 
 Attachment : art.TURTLE
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/My%20Artwork/chal_commands.png">
+![](/BSNoida_chal_commands.png)
 
 Looking at the commands and searching them I find that they are syntax of MSW Logo so I download MSW Logo and execute the repeat commands one by one.
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/My%20Artwork/exec_logo_commands.png">
+![](/BSNoida_exec_logo_commands.png)
 
 Doing so we get 
 ```bash
@@ -172,17 +172,17 @@ Using the command given in the challenge we get lyrics of Rickroll.
 
 Opening the exe in ghidra, we see that it XORs each character and then compares it.
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Sanity/ghidra_decompilation.png">
+![](/BSNoida_ghidra_decompilation.png)
 
 Opening the binary in Ollydbg and setting the breakpoint at the `CMP` instruction using `F2`.
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Sanity/ollydbg_breakpoint.png">
+![](/BSNoida_ollydbg_breakpoint.png)
 
 The flag length is 33 as this was the length of the string getting XORed with input(from ghidra).
 
 We send 33 A's and then look at the CMP instruction.
 
-<img src="https://github.com/p1xxxel/ctf-writeups/blob/main/2021/BSides%20Noida/Sanity/CMP_instruction.png">
+![](/BSNoida_CMP_instruction.png)
 
 So A gets converted into H and then is compared to K. So we can just XOR A with H to get the key and then XOR the key with K to get the flag.
 
